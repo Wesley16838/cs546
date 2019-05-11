@@ -42,6 +42,7 @@ app.use(morgan('dev'))
 app.use("/public", static);
 app.use('/uploads', express.static('uploads'))
 app.use('/user/cart/uploads', express.static('uploads'))
+app.use('/book/uploads', express.static('uploads'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(rewriteUnsupportedBrowserMethods);
@@ -50,7 +51,7 @@ app.engine("handlebars", handlebarsInstance.engine);
 app.set("view engine", "handlebars");
 configRoutes(app);
 
-app.listen(3000, () => {
+app.listen(3001, () => {
   console.log("We've now got a server!");
-  console.log("Your routes will be running on http://localhost:3000");
+  console.log("Your routes will be running on http://localhost:3001");
 });

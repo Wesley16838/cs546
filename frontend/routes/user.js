@@ -4,6 +4,7 @@ const data = require("../data");
 const userData = data.user;
 const cartData = data.cart
 const bookData = data.book;
+const orderData = data.order;
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const checkAuth = require('../middleware/check_auth')
@@ -21,20 +22,53 @@ router.get("/dashboard", async (req, res) => {
     title:"Dashboard Page"
   });
 });
-router.post("/cart/add/:userid", async (req, res) => {
-  console.log("cart");
+router.post("/add/order", async (req, res) => {
+
+  try{
+ 
+    const address = req.body.shippingaddress;
+
+    const payment = req.body.paymentmethod;
+
+    const userId = req.cookies.userid;
+
+    //get user
+    const userInfo = await userData.get(userId);
+ 
+    const content = userInfo.cart;
+
+    const addInfo = await orderData.createOrder(userId, content, address, payment);//createOrder(userid, content, address, payment)
+    res.status(200).json({
+      info:addInfo,
+      message:"Add order successfully",
+      hasError: false,
+    })
+
+  }catch(e){
+    res.status(200).json({
+      info:addInfo,
+      error:e,
+      hasError: true,
+    })
+  }
+});
+router.post("/cart/add/", async (req, res) => {
+ 
   try{
     var total = 0;
     console.log("inCart");
     const bookId = req.query.bookId;
-    // const userId = req.cookies.userid;
-    const userId = req.params.userid;
-    const quantity = req.body.quantity;
+    console.log("1");
+    const userId = req.cookies.userid;
+    console.log("2");
+    const quantity = parseInt(req.body.quantity);
+    console.log(quantity);
+    console.log(typeof quantity);
     const addInfo = await cartData.addItem(userId, bookId, quantity);
     for(var i = 0; i < addInfo.cart.length; i++){
       total = total + addInfo.cart[i].qty
     }
-    
+    res.status(200).redirect("/homepage");
     res.status(200).json({
       info:addInfo,
       total: total
@@ -191,9 +225,28 @@ router.post("/cart/update/:bookId", async (req, res) => {
 
 router.post("/signup", async (req, res) => {
   try{
-    console.log(req.body)
-      if(typeof req.body.firstname !== 'undefined' && typeof req.body.lastname !== 'undefined' && typeof req.body.phonenumber !== 'undefined' && typeof req.body.email !== 'undefined' && typeof req.body.pwd !== 'undefined'){
-        console.log(req.body)
+ console.log(req.body)
+        if(req.body.firstname ==  '' || req.body.lastname == '' || req.body.phonenumber == '' || req.body.email == '' || req.body.pwd == '') throw 'Please fill all fields'
+       
+        if(req.body.pwd != req.body.comfirm) throw "Password doesn't match"
+   
+        //test illegal email
+        var mail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+        if(!mail.test(req.body.email)) throw "email format is not correct"
+
+        //test illegal phone number
+        var phoneno = /^\d{10}$/;
+        if(!req.body.phonenumber.match(phoneno)) throw "Phone number format is not correct"
+   
+        
+        //test illegal first name and last name
+        var format_name = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        if(format_name.test(req.body.firstname) || format_name.test(req.body.lastname)) throw "Don't contain special character like !@#$%^&*.,<>/\'\";:? in firstname or lastname";
+   
+        //test illegal password format
+        var format = /[ !@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        if(format.test(req.body.pwd)) throw "Don't contain special character like !@#$%^&*.,<>/\'\";:? in password";
+   
         const user = await userData.create(req.body.firstname, req.body.lastname, req.body.phonenumber, req.body.email, req.body.pwd)
         const token = jwt.sign({/////////put tolen in the data
           email: user.email ,
@@ -204,7 +257,7 @@ router.post("/signup", async (req, res) => {
                 expiresIn: "1h"
             }
         )
-        console.log(user._id);
+   
         res.cookie('token', token);
         res.cookie('userid', user._id);
      
@@ -213,11 +266,10 @@ router.post("/signup", async (req, res) => {
         //   title:"Home Page",
         //   user: user
         // })    
-      }else{
-        throw 'Please fill all fields'
-      }
+      
   }catch(e){
       res.status(400).render("Component/signup",{
+          hasErrors: true,
           error : e,
       })
       // res.status(400).json({
@@ -236,30 +288,21 @@ router.get("/login", checkCookie,async (req, res) => {
 router.post("/login", async (req, res) => {
   try{
     console.log(req.body)
-      if(typeof req.body.email !== 'undefined' && typeof req.body.pwd !== 'undefined'){
+      if(req.body.email ==  '' || req.body.pwd ==  '' ) throw 'Please fill all fields'
         
         const user = await userData.login(req.body.email, req.body.pwd)
-        console.log('step 4')
-        console.log(user);
-        console.log(user['user'][0]._id);
+       
         
         res.cookie('token', user['token']);
         res.cookie('userid', user['user'][0]._id);
         res.status(200).redirect("/homepage")     
-        // res.status(200).render("Component/homepage", {
-        //   title:"Home Page",
-        //   user: user['user'][0]
-        // })    
-        // res.status(200).json({
-        //   message: "Handling POST requests to /login",
-        //   User : user['user'][0],
-        //   token: user['token']
-        // });
-      }else{
-        throw 'Please fill all fields'
-      }
+      
+    
+       
+      
   }catch(e){
-      res.status(400).render("Component/signup",{
+      res.status(400).render("Component/login",{
+          hasErrors:true,
           error : e,
       })
       // res.status(400).json({

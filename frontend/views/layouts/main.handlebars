@@ -78,7 +78,7 @@
                         }
                     })
                 })
-            }else if(document.title == 'Dashboard Page'){
+            }else if(document.title == 'Dashboard Page'  || document.title == 'Search Page' ||  document.title == 'Detail Page'){
                 $(document).ready(function(){
                     $(window).scroll(function(){
                         var scroll = $(window).scrollTop();
@@ -123,7 +123,7 @@
                         useCSS: false,
                         centerPadding: '60px',
                         slidesToShow: 5,
-                        
+                        slidesToScroll: 3,
                         responsive: [
                             {
                             breakpoint: 768,
@@ -161,6 +161,7 @@
                         autoplay: true,
                         fade: true,
                         autoplaySpeed: 5000,
+                        pauseOnHover:false,
                         pauseOnFocus:false
                     });
                     
