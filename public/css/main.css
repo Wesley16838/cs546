@@ -1181,7 +1181,8 @@ transition: .5s ease;
   border: 1px solid #ccc;
   background-color: #f1f1f1;
   width: 30%;
-  height: calc(100vh - 140px);
+  height: 100vh;
+  position: fixed
 }
 
 /* Style the buttons that are used to open the tab content */
@@ -1216,10 +1217,14 @@ transition: .5s ease;
   width: 70%;
   border-left: none;
   height: calc(100vh - 140px);
+  position: absolute;
+  right: 0;
+  overflow-y: scroll;
 }
 
 .dashboard{
   padding-top:140px;
+  
 }
 
 .store{
@@ -1353,4 +1358,80 @@ font-size: .85em;
 
 .footer-heading span{
  color:#fff;
+}
+.addresses{
+width: 100%;
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+}
+.user-address{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding:1em;
+  transition: 0.3s;
+  width:30%;
+  float: left;
+  margin-right: 3.33%;
+  margin-top: .5em;
+}
+.user-address p{
+  font-size: .7em;
+}
+.user-address:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.profile ul li{
+  list-style: none;
+  margin: 1em 0em;
+}
+
+.success{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+.success h1{
+  font-weight: bold;
+  font-size:2em;
+  color:#000;
+}
+
+.user-order{
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding:1em;
+  transition: 0.3s;
+  width:90%;
+  float: left;
+  margin:.5em auto;
+  display: flex;
+}
+
+.order-info{
+  padding-left: 1em;
+  display: flex;
+  flex-direction: column;
+  width:70%;
+}
+.order-info p{
+  font-size: 1em;
+  font-weight: bold;
+}
+.order-info p span{
+  font-size: 1em;
+  font-weight: 500;
+ }
+.order-items {
+  width:30%;
+  display: flex;
+  flex-direction: column;
+  }
+.order-item {
+width:100%;  
+text-align: center;
+}
+.order-item img{
+  width:150px;
 }

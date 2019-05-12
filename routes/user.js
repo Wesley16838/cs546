@@ -36,19 +36,52 @@ router.get("/dashboard", checkAuth, async (req, res) => {
   const userId = req.cookies.userid;
   const userInfo = await userData.get(userId)
   const orderInfo = await orderData.getById(userId);
+  // console.log(orderInfo)
   var total = 0;
- 
+  var arr=[];
   
   for(var i = 0; i < userInfo.cart.length; i++){
     
     total = total + userInfo.cart[i].qty;
   
   }
+
+  var arr1 = [];
+  for(var i = 0; i < orderInfo.length; i++){
+    var obj ={};
+    var month = orderInfo[i].date.getUTCMonth() + 1; //months from 1-12
+    var day = orderInfo[i].date.getUTCDate();
+    var year = orderInfo[i].date.getUTCFullYear();
+    var newdate = year + "/" + month + "/" + day;
+    orderInfo[i].payment =  "Visa end in "+orderInfo[i].payment.substring(15,19)
+    orderInfo[i].date = newdate
+    
+    
+    for(var j = 0; j< orderInfo[i].content.length; j++){
+      var orderitem = await bookData.get(orderInfo[i].content[j].id);
+      console.log(orderInfo[i].content[j].id)
+      orderInfo[i].content[j].id = orderitem
+    }
+    
+  }
+  console.log(arr1)
+
+  for(var j = 0; j < userInfo.paymentMethod.length; j++){
+    var obj={};
+    obj['cardNumber']=userInfo.paymentMethod[j].cardNumber.substring(15,19);
+    obj['username']=userInfo.paymentMethod[j].cardUser;
+    arr.push(obj)
+  }
   res.status(200).render("Component/dashboard", {
     title:"Dashboard Page",
     userid:userId,
     cartTotal: total,
     firstName: userInfo.firstName,
+    lastName: userInfo.lastName,
+    phonenumber: userInfo.phoneNumber,
+    email: userInfo.email,
+    addresses:userInfo.address,
+    payment: arr,
     order: orderInfo
   });
 });
@@ -56,7 +89,7 @@ router.get("/dashboard", checkAuth, async (req, res) => {
 router.post("/add/order", async (req, res) => {
 
   try{
- 
+
     const address = req.body.shippingaddress;
 
     const payment = req.body.paymentmethod;
@@ -69,18 +102,24 @@ router.post("/add/order", async (req, res) => {
     const content = userInfo.cart;
 
     const addInfo = await orderData.createOrder(userId, content, address, payment);//createOrder(userid, content, address, payment)
-    res.status(200).json({
-      info:addInfo,
-      message:"Add order successfully",
-      hasError: false,
+
+    var total = 0;
+
+    for(var i = 0; i < userInfo.cart.length; i++){
+      
+      total = total + userInfo.cart[i].qty;
+    
+    }
+
+    res.status(200).render('Component/success',{
+      title: 'Successful Page',
+      cartTotal: total,
+      firstName: userInfo.firstName
     })
 
   }catch(e){
-    res.status(200).json({
-      info:addInfo,
-      error:e,
-      hasError: true,
-    })
+    const userId = req.cookies.userid;
+    res.status(400).redirect("/user/cart/"+userId);
   }
 });
 router.post("/cart/add/", async (req, res) => {
@@ -99,15 +138,10 @@ router.post("/cart/add/", async (req, res) => {
     for(var i = 0; i < addInfo.cart.length; i++){
       total = total + addInfo.cart[i].qty
     }
-    res.status(200).redirect("/homepage");
-    res.status(200).json({
-      info:addInfo,
-      total: total
-    })
+    res.status(200).redirect("/user/cart/"+userId);
+ 
   }catch(e){
-    res.status(400).json({
-      error:e
-    })
+    res.status(400).redirect("")//////////////////
   }
 });
 
@@ -358,7 +392,7 @@ router.post("/update/address", async (req, res) => {
     const userInfo = await userData.get(userId)
     console.log('test')
    
-    res.status(200).redirect("/user/cart/"+userId)
+    res.status(200).redirect("/user/dashboard")
     // res.status(400).json({
     //   user:userInfo
     // })
@@ -382,7 +416,7 @@ router.post("/update/payment/", async (req, res) => {
     const userInfo = await userData.get(userId)
     console.log('test')
    
-    res.status(200).redirect("/user/cart/"+userId)
+    res.status(200).redirect("/user/dashboard")
     // res.status(200).json({
     //   user:userInfo
     // })
