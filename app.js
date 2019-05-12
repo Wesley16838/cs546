@@ -43,6 +43,7 @@ app.use("/public", static);
 app.use('/uploads', express.static('uploads'))
 app.use('/user/cart/uploads', express.static('uploads'))
 app.use('/book/uploads', express.static('uploads'))
+app.use('/user/uploads', express.static('uploads'))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(rewriteUnsupportedBrowserMethods);

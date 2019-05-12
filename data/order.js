@@ -39,7 +39,7 @@ module.exports = {
             if(objId.isValid(uid)){
               var obj = new objId(uid)
               const orderCollection = await orders();
-              const order = await orderCollection.find({user:obj})
+              const order = await orderCollection.find({user:obj}).toArray()
               if (order.length === 0) throw "No order with that user id";
               return order;
             }else{
@@ -50,7 +50,7 @@ module.exports = {
           }
         }else{
           const orderCollection = await users();
-          const order = await orderCollection.find({user:uid})
+          const order = await orderCollection.find({user:uid}).toArray()
           if (order.length === 0) throw "No order with that user id";
           return order;
         }
