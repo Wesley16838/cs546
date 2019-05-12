@@ -22,7 +22,7 @@
                 </div>
                 <div class="form-group half-form">
                     <label for="phonenumber" style="font-weight: normal;">Phone Number</label>
-                    <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="Phone Number" value="{{phonenumber}}">
+                    <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="●●●●●●●●●●" value="{{phonenumber}}">
                 </div>
                 <div class="form-group half-form">
                     <label for="email" style="font-weight: normal;">Email</label>
@@ -38,15 +38,22 @@
                     <input type="password" class="form-control" id="comfirm" name="comfirm" placeholder="Comfirm password" value="{{comfirm}}">
                 </div>
             
-                {{#if error }}
+                {{#if hasErrors }}
                 <div class="form-group">
-                    <div class="alert alert-danger">
-                    {{ error }}
-                    </div>
+                    <ul class="error-list" style="padding-inline-start: 0px;">
+        
+                        <li style="list-style: none;">
+                        <p class="not-found">{{error}}</p>
+                        </li>
+                    </ul>
                 </div>
                 {{/if}}
-                <div class="form-group half-form">
+                <div class="form-group">
                     <button type="submit" class="btn_signup">Submit</button>
+                </div>
+                <br>
+                 <div class="form-group" style="text-align:center;">
+                    <p>Already has account?</p> <a href="/user/login">Log in here</a>
                 </div>
                 
             </form>

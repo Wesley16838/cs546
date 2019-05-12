@@ -117,6 +117,26 @@ module.exports = {
             return book;
         
     },
+    async getByKeyword(keyword) {/////Search box
+        if (!keyword || typeof keyword != 'string') throw "You must provide a keyword";
+            console.log('keyword')
+            
+           
+            let key = new RegExp('.*' + keyword + '.*', 'i');
+            
+            const bookCollection = await books();
+            const book = await bookCollection.find({$or: 
+                [
+                    {bookName: key},
+                    {bookAuthor: key},
+                    {bookPublisher: key}
+                ]
+            }).toArray();
+           
+            if (book.length === 0) throw "No book with that keyword";
+            return book;
+        
+    },
     async getAll() {
         console.log('2')
           const bookCollection = await books();
