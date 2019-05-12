@@ -129,7 +129,8 @@ module.exports = {
                 [
                     {bookName: key},
                     {bookAuthor: key},
-                    {bookPublisher: key}
+                    {bookPublisher: key},
+                    {bookSeries: key}
                 ]
             }).toArray();
            

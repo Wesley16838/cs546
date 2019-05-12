@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require('../middleware/check_auth')
+const checkCookie = require('../middleware/check_cookie')
 const multer = require('multer')
 const data = require("../data");
 const bookData = data.book;
@@ -57,16 +58,18 @@ try{
 });
 
 //get book by keywork from search box
-router.get("/search", async (req, res) => { //check_Auth
+router.get("/search", checkAuth, async (req, res) => { //check_Auth
     try{
-     
+        console.log('1')
         var total = 0;
         const id = req.cookies.userid;
+        console.log('2')
         const userInfo = await userData.get(id);
         for(var i = 0; i < userInfo.cart.length; i++){
           total = total + userInfo.cart[i].qty
         }
         var keyword = req.query.keyword;
+        console.log(keyword)
         const book = await bookData.getByKeyword(keyword);//unify to convert to upper or lower
         res.status(200).render('Component/search',{
           title:"Search Page",
@@ -91,7 +94,7 @@ router.get("/search", async (req, res) => { //check_Auth
 
 
 //get book by id
-router.get("/:id", async (req, res) => { //check_Auth
+router.get("/:id", checkAuth, async (req, res) => { //check_Auth
     try{
         var total = 0;
         const userid = req.cookies.userid;

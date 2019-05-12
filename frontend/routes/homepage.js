@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const checkAuth = require('../middleware/check_auth')
+const checkCookie = require('../middleware/check_cookie')
 const data = require("../data");
 const userData = data.user;
 const bookData = data.book;//Search book and display books in the homepage after window loading

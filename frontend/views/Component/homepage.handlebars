@@ -3,9 +3,9 @@
                 <a href="./homepage"><img id="logo" src="../../public/assets/logo200.png" alt="Logo" style=""></a>
                 <form action="/book/search" method="GET">
                         <div class="form-group has-feedback has-search" style="margin-bottom:0px">
-                                
+                                <label for="keyword" style="display:none;"></label>
                                 <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
-                              <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                              <span style="top: 0px;" class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                 </form>
         </div>
@@ -35,14 +35,14 @@
 <div class="home-main">
 
         <div class="slide1" style="display:flex">
-             <a href="#"><img class="wow fadeIn" data-wow-delay=".7s" src="../../public/assets/icegroup@2x.png" alt=""></a>
+             <a href="/book/search?keyword=iceandfire"><img class="wow fadeIn" data-wow-delay=".7s" src="../../public/assets/icegroup@2x.png" alt="ice and fire"></a>
         </div>
         <div class="slide21" style="display:flex">
-             <a href="#"><img src="../../public/assets/hungergroup@2x.png" alt=""></a>
+             <a href="/book/search?keyword=hungergame"><img src="../../public/assets/hungergroup@2x.png" alt="hunger game"></a>
             
         </div>
         <div class="slide31" style="display:flex">
-            <a href="#"><img src="../../public/assets/nightgroup@2x.png" alt=""></a>
+            <a href="/book/search?keyword=nightside"><img src="../../public/assets/nightgroup@2x.png" alt="nightside"></a>
         </div>
 </div>
 <div>
@@ -110,6 +110,18 @@
                      
         </section>
 </article>
+<!-- Footer -->
+<footer>
+
+  <!-- Copyright -->
+  
+   <div class="footer-body" style="margin-top: 5em;">
+      <div class="footer-heading">© 2018 Copyright: <span style="color:#fff;">BookTown</span></div> 
+    </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 <script src="../../public/js/wow.js"></script>
 
 <script>

@@ -11,6 +11,7 @@
   "author": "Wei-Hsuan Wong",
   "license": "MIT",
   "dependencies": {
+    "@khanacademy/tota11y": "^0.2.0",
     "bcrypt": "^3.0.4",
     "body-parser": "^1.15.2",
     "cleave.js": "^1.4.10",

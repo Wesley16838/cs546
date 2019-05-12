@@ -4,7 +4,7 @@
                 <form action="/book/search" method="GET">
                         <div class="form-group has-feedback has-search" style="margin-bottom:0px">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                 <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                                <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
                         </div>
                 </form>
         </div>
@@ -29,22 +29,23 @@
                 </ul>
         </div>
 </nav>
-<div class="container" style="padding-top:140px">
+<div class="container" style="padding-top:180px">
         <div class="left-book">
                 <img src="{{book.bookImage}}" alt="">
-                <p>$<span id="price">{{book.bookPrice}}</span></p>
-                <form action="../user/cart/add/?bookId={{book._id}}" method="POST">
-                        <h2 class="item-title" style="margin: 0;">Quantity</h2>
-                        <label for="quantity" style="font-weight: normal;display: none;"></label>
-                        <input type="number" onchange="myFunction()" id="quantity" name="quantity" min="1" max="10" value="1" style="width: 30%;margin: auto;">
+                <p style="font-size:.8em; margin:1em 0em;">$<span style="color:#3ea5a7" id="price">{{book.bookPrice}}</span></p>
+                <form action="../user/cart/add/?bookId={{book._id}}" method="POST" style="display: inline-block;">
+                        <h2 class="item-title" style="margin-bottom: 1em;">Quantity</h2>
+                        <label for="quantity" style="font-weight: normal;display: none;"></label>            
+                        <input type="number" onchange="myFunction()" id="quantity" name="quantity" min="1" max="10" value="1" style="width: 30%; margin-bottom: 1em;">
+                        <p style="font-size:.8em">Total:<span id="demo">{{book.bookPrice}}</span></p>
                         <button class="cart-btn" type="submit">Add to Cart</button>
                 </form>
-                <p>Total:<span id="demo">{{book.bookPrice}}</span></p>
+                
                 {{!-- <a href="javascript:addshoppingcart('{{book._id}}')">Add to cart</a> --}}
         </div>
         <div class="right-book">
                 <div class="book-desc">
-                       <h2>{{book.bookName}} <span> - {{book.bookPublisher}} - {{date}}</span></h2>
+                       <h2 style="font-weight: bold">{{book.bookName}} <span style="font-weight:500; color:rgb(150, 150, 150); margin-left:1em"> {{book.bookPublisher}} - {{date}}</span></h2>
                        <p>Author</p><span>{{book.bookAuthor}}</span><br>
                        
                        <p>Language</p><span>{{book.bookLanguage}}</span><br>
@@ -53,7 +54,18 @@
                 </div>           
         </div>
 </div>
+<!-- Footer -->
+<footer>
 
+  <!-- Copyright -->
+  
+   <div class="footer-body">
+      <div class="footer-heading">© 2018 Copyright: <span style="color:#fff;">BookTown</span></div> 
+    </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
 <script>
 
     function delete_cookie() {
