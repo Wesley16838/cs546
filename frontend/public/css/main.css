@@ -1307,11 +1307,16 @@ font-size: .85em;
 
 .book-desc p{
   display:inline-block;
-  width:110px;
+  width:150px;
 }
 
 .book-desc span{
   display:inline-block;
+}
+
+.book-desc p{
+  font-size: 1em;
+  color:rgb(150, 150, 150);
 }
 
 .right-book{
@@ -1332,4 +1337,20 @@ font-size: .85em;
 
 .error-list li {
   color: #ff0000;
+}
+
+.footer-body{
+  margin-top:1em;
+  width:100%;
+  background-color: #0072cf;
+  text-align: center;
+  padding:1em 0em;
+}
+
+.footer-heading{
+  color:#41aaff;
+ }
+
+.footer-heading span{
+ color:#fff;
 }

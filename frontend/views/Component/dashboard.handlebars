@@ -20,7 +20,6 @@
                                 <a href="#"><span id="username">Hi {{firstName}}</span>Account</a>
                                 <ul class="dropdown">
                                         <li><a href="#">My account</a></li>
-                                        <li><a href="#">My order</a></li>
                                         <li><a href="../../../" onclick="delete_cookie()">Log out</a></li>
                                             {{!-- <li><button onclick="delete_cookie()">Log Out</button></li> --}}
                                 </ul>
@@ -31,13 +30,17 @@
 </nav>
 <div class="dashboard">
      <div class="tab">
-        <button class="tablinks" onclick="openCity(event, 'Address')" id="defaultOpen">Address</button>
+        <button class="tablinks" onclick="openCity(event, 'Account')" id="defaultOpen">Account</button>
+        <button class="tablinks" onclick="openCity(event, 'Address')" >Address</button>
         <button class="tablinks" onclick="openCity(event, 'Payment')">Payment</button>
         <button class="tablinks" onclick="openCity(event, 'Order')">Track order</button>
     </div>
-
+    <div id="Account" class="tabcontent">
+        <h1 style="font-weight:bold">Account Information</h1>
+     
+    </div>
     <div id="Address" class="tabcontent">
-        <h1>Address</h1>
+        <h1 style="font-weight:bold">Address</h1>
             <form action="/user/update/address" class="server-form" method="post" id="static-form">
                 <div class="form-group half-form">
                     <label for="address" style="font-weight: normal;">Address</label>
@@ -132,7 +135,7 @@
     </div>
 
     <div id="Payment" class="tabcontent">
-        <h3>Payment method</h3>
+        <h1 style="font-weight:bold">Payment method</h1>
         <form action="/user/update/payment" class="server-form" method="post" id="static-form">
                 <div class="form-group half-form">
                     <label for="cardnumber" style="font-weight: normal;">Card Number</label>
@@ -151,7 +154,7 @@
               
                
             
-                {{#if error }}
+                {{#if hasErrors }}
                 <div class="form-group">
                     <div class="alert alert-danger">
                     {{ error }}
@@ -166,7 +169,7 @@
     </div>
 
     <div id="Order" class="tabcontent">
-        <h3>Track your order</h3>
+        <h1 style="font-weight:bold">Track your order</h1>
      
     </div>
 </div>

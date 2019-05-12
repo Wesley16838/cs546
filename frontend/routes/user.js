@@ -12,14 +12,42 @@ const checkCookie = require('../middleware/check_cookie')
 
 router.get("/signup", checkCookie, async (req, res) => {
   console.log("sign up")
+  const userId = req.cookies.userid;
+  const userInfo = await userData.get(userId)
+  var total = 0;
+ 
+  
+  for(var i = 0; i < userInfo.cart.length; i++){
+    
+    total = total + userInfo.cart[i].qty;
+  
+  }
   res.status(200).render("Component/signup", {
-    title:"Signup Page"
+
+    title:"Signup Page",
+    userid:userId,
+    cartTotal: total,
+    firstName: userInfo.firstName
   });
 });
-router.get("/dashboard", async (req, res) => {
+router.get("/dashboard", checkAuth, async (req, res) => {
+
   console.log("dashboard")
+  const userId = req.cookies.userid;
+  const userInfo = await userData.get(userId)
+  var total = 0;
+ 
+  
+  for(var i = 0; i < userInfo.cart.length; i++){
+    
+    total = total + userInfo.cart[i].qty;
+  
+  }
   res.status(200).render("Component/dashboard", {
-    title:"Dashboard Page"
+    title:"Dashboard Page",
+    userid:userId,
+    cartTotal: total,
+    firstName: userInfo.firstName
   });
 });
 router.post("/add/order", async (req, res) => {
@@ -148,7 +176,7 @@ router.post("/cart/delete/:bookId", async (req, res) => {///delete
     const bookId = req.params.bookId;
     console.log(bookId)
 
-    const userId = req.cookies.userid;;
+    const userId = req.cookies.userid;
     console.log(userId)
 
     const deleteInfo = await cartData.delete(userId, bookId);
@@ -240,7 +268,7 @@ router.post("/signup", async (req, res) => {
    
         
         //test illegal first name and last name
-        var format_name = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/;
+        var format_name = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]/;
         if(format_name.test(req.body.firstname) || format_name.test(req.body.lastname)) throw "Don't contain special character like !@#$%^&*.,<>/\'\";:? in firstname or lastname";
    
         //test illegal password format
