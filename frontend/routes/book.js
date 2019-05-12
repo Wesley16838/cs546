@@ -4,6 +4,7 @@ const checkAuth = require('../middleware/check_auth')
 const multer = require('multer')
 const data = require("../data");
 const bookData = data.book;
+const userData = data.user;
 const storage = multer.diskStorage({
       destination: function(req, file, cb){
           cb(null,'./uploads/')
@@ -58,13 +59,27 @@ try{
 //get book by keywork from search box
 router.get("/search", async (req, res) => { //check_Auth
     try{
-        console.log('1')
-        // var series = req.body.bookSeries.toUpperCase();
-        // const book = await bookData.get("HARRY POTTER");
-        res.status(200).json({
-            message:"Search all book successfully",
-            book: book
-           })
+     
+        var total = 0;
+        const id = req.cookies.userid;
+        const userInfo = await userData.get(id);
+        for(var i = 0; i < userInfo.cart.length; i++){
+          total = total + userInfo.cart[i].qty
+        }
+        var keyword = req.query.keyword;
+        const book = await bookData.getByKeyword(keyword);//unify to convert to upper or lower
+        res.status(200).render('Component/search',{
+          title:"Search Page",
+          cartTotal: total,
+          firstName: userInfo.firstName,
+          books: book,
+          keyword: keyword,
+          number:book.length
+         })
+        // res.status(200).json({
+        //     message:"Search all book successfully",
+        //     books: book
+        //    })
     }catch(e){
         res.status(400).json({
             error:e
@@ -78,14 +93,33 @@ router.get("/search", async (req, res) => { //check_Auth
 //get book by id
 router.get("/:id", async (req, res) => { //check_Auth
     try{
-        console.log('1')
-        const id = req.params.id;
-        const book = await bookData.get(id)
-        console.log(id)
-        res.status(200).json({
-            message:"Search all book successfully",
-            book: book
-           })
+        var total = 0;
+        const userid = req.cookies.userid;
+        console.log(userid)
+        const userInfo = await userData.get(userid);
+        for(var i = 0; i < userInfo.cart.length; i++){
+          total = total + userInfo.cart[i].qty
+        }
+        const bookid = req.params.id;
+        const book = await bookData.get(bookid);
+        var month = book.bookPublishTime.getUTCMonth() + 1; //months from 1-12
+        var day = book.bookPublishTime.getUTCDate();
+        var year = book.bookPublishTime.getUTCFullYear();
+
+        var newdate = year + "/" + month + "/" + day;
+        console.log(newdate)
+        // res.status(200).json({
+        //     message:"Search all book successfully",
+        //     book: book
+        //    })
+        res.status(200).render('Component/detail',{
+        title:"Detail Page",
+        cartTotal: total,
+        userid:userInfo._id,
+        firstName: userInfo.firstName,
+        book: book,
+        date:newdate
+        })
     }catch(e){
         res.status(400).json({
             error:e

@@ -1,10 +1,11 @@
 <nav>
         <div class="left">
                 <a href="./homepage"><img id="logo" src="../../public/assets/logo200.png" alt="Logo" style=""></a>
-                <form action="/" method="POST">
+                <form action="/book/search" method="GET">
                         <div class="form-group has-feedback has-search" style="margin-bottom:0px">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                <input type="text" class="form-control" placeholder="Search">
+                                
+                                <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                              <span class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                 </form>
         </div>
@@ -20,9 +21,9 @@
                         <li>
                                 <a href=""><span id="username">Hi {{firstName}}</span>Account</a>
                                 <ul class="dropdown">
-                                        <li><a href="#">My account</a></li>
-                                        <li><a href="#">My order</a></li>
-                                        <li><a href="#">Log out</a></li>
+                                        <li><a href="/user/dashboard">My account</a></li>
+                                      
+                                        <li><a href="../../../" onclick="delete_cookie()">Log out</a></li>
                                 </ul>
                         </li>
 
@@ -34,13 +35,14 @@
 <div class="home-main">
 
         <div class="slide1" style="display:flex">
-                <h2 class="subtitle animated fadeIn">First Slide</h2>
+             <a href="#"><img class="wow fadeIn" data-wow-delay=".7s" src="../../public/assets/icegroup@2x.png" alt=""></a>
         </div>
-        <div class="slide1" style="display:flex">
-                <h2 class="subtitle">Second Slide</h2>
+        <div class="slide21" style="display:flex">
+             <a href="#"><img src="../../public/assets/hungergroup@2x.png" alt=""></a>
+            
         </div>
-        <div class="slide1" style="display:flex">
-                <h2 class="subtitle">Third Slide</h2>
+        <div class="slide31" style="display:flex">
+            <a href="#"><img src="../../public/assets/nightgroup@2x.png" alt=""></a>
         </div>
 </div>
 <div>
@@ -52,7 +54,7 @@
         <div class="center wow fadeIn">
                         {{#each book}}  
                                 <div class="slide2">
-                                        <a href="/search/{{_id}}">
+                                        <a href="/book/{{_id}}">
                                                 <img src="{{bookImage}}" alt="book">
                                                 <div class="overlay">
                                                         <div class="text">
@@ -66,14 +68,14 @@
                         {{/each}}
         </div>
 </div>
-<article class="wow fadeIn">
+<article class="wow fadeIn" style="padding-top:5em;">
         <section class="left-wrap">
                 <div>
                         <div style="width:100%; text-align:center;">
                                 <img src="../../public/assets/month@2x.png" alt="popular in month" >
                         </div>
                         <div class="intro" style="width:100%;">
-                                <a href="/search/{{_id}}" style="z-index: 1;">
+                                <a href="/book/{{_id}}" style="z-index: 1;">
                                         <img src="{{book2.bookImage}}" alt="">
                                 </a>
                                 <div style="margin-left: 1em; z-index: 1;">
@@ -89,7 +91,7 @@
                 <ul>
                         {{#each book1}}  
                                <li>
-                                        <a href="/search/{{_id}}" class="detail-wrap">
+                                        <a href="/book/{{_id}}" class="detail-wrap">
                                                
                                                 <img src="{{bookImage}}" alt="book" class="monthImg" >
                                         </a>
@@ -112,6 +114,13 @@
 
 <script>
         new WOW().init();
+         function delete_cookie() {
+        document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        alert('You have been logged out!')
+        window.location = "../../../";
+        
+    }
         $(function() {
                 $('.scroll-down').click (function() {
                         $('html, body').animate({scrollTop: $('.scroll-down').offset().top }, 1000,'swing');
