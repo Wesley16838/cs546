@@ -31,6 +31,31 @@ module.exports = {
         return order;
       }
     },
+    //Get order by userid
+    async getById(uid) {
+      if (!uid) throw "You must provide an user id to search for";
+        if(uid.constructor != objId){
+          if(uid.constructor == String){
+            if(objId.isValid(uid)){
+              var obj = new objId(uid)
+              const orderCollection = await orders();
+              const order = await orderCollection.find({user:obj})
+              if (order.length === 0) throw "No order with that user id";
+              return order;
+            }else{
+              throw "It is not a valid id"
+            }
+          }else{
+            throw "Please input Id as object Id or string"
+          }
+        }else{
+          const orderCollection = await users();
+          const order = await orderCollection.find({user:uid})
+          if (order.length === 0) throw "No order with that user id";
+          return order;
+        }
+      },
+
     async createOrder(userid, content, address, payment){
         if (!userid) throw "You must provide an id to search for user Id";
         if (!content) throw "You must provide content";

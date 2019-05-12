@@ -44,6 +44,11 @@
 
             <div class="left-item">
                 <ul style="padding-left: 0em;margin-bottom: 0px;">
+                    {{#if empty }}
+                    
+                       <h2 style="color:rgb(214, 0, 0)">Your cart is empty</h2>
+                    
+                    {{/if}}
                      {{#each books}}  
                                 <li class="item">
                                     <div class="item-img">
