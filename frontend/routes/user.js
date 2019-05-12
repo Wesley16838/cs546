@@ -35,6 +35,7 @@ router.get("/dashboard", checkAuth, async (req, res) => {
   console.log("dashboard")
   const userId = req.cookies.userid;
   const userInfo = await userData.get(userId)
+  const orderInfo = await orderData.getById(userId);
   var total = 0;
  
   
@@ -47,9 +48,11 @@ router.get("/dashboard", checkAuth, async (req, res) => {
     title:"Dashboard Page",
     userid:userId,
     cartTotal: total,
-    firstName: userInfo.firstName
+    firstName: userInfo.firstName,
+    order: orderInfo
   });
 });
+
 router.post("/add/order", async (req, res) => {
 
   try{
@@ -123,8 +126,7 @@ router.get("/cart/:userid", async (req, res) => {
     var total = 0;
     console.log(id)
     const userInfo = await userData.get(id)
-    console.log('id')
-    console.log(userInfo)
+    var empty = false;
     
     for(var i = 0; i < userInfo.cart.length; i++){
       eachtotal = 0;
@@ -144,8 +146,9 @@ router.get("/cart/:userid", async (req, res) => {
      obj1['cardnumber']=userInfo.paymentMethod[j].cardNumber
      arr1.push(obj1)
     }
-    console.log('arr1')
-    console.log(arr1)
+   if(total ==0){
+     empty = true
+   }
   
    
     res.status(200).render("Component/cart",{
@@ -156,7 +159,8 @@ router.get("/cart/:userid", async (req, res) => {
       books:arr,
       bookTotal: bookTotal.toFixed(2),
       addresses:userInfo.address,
-      payments: arr1
+      payments: arr1,
+      empty: empty
     })
   }catch(e){
     res.status(400).json({
