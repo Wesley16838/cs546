@@ -12,22 +12,12 @@ const checkCookie = require('../middleware/check_cookie')
 
 router.get("/signup", checkCookie, async (req, res) => {
   console.log("sign up")
-  const userId = req.cookies.userid;
-  const userInfo = await userData.get(userId)
-  var total = 0;
  
-  
-  for(var i = 0; i < userInfo.cart.length; i++){
-    
-    total = total + userInfo.cart[i].qty;
-  
-  }
+
   res.status(200).render("Component/signup", {
 
     title:"Signup Page",
-    userid:userId,
-    cartTotal: total,
-    firstName: userInfo.firstName
+ 
   });
 });
 router.get("/dashboard", checkAuth, async (req, res) => {
