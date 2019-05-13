@@ -146,6 +146,8 @@ router.get("/cart/:userid", async (req, res) => {
     var bookTotal=0;
     var eachtotal;
     const id = req.params.userid;
+    const userid = req.cookies.userid;
+    if(userid != id) throw "Error id"
     console.log("inCart");
     var total = 0;
     console.log(id)
@@ -187,9 +189,7 @@ router.get("/cart/:userid", async (req, res) => {
       empty: empty
     })
   }catch(e){
-    res.status(400).json({
-      error:e
-    })
+    res.status(400).redirect('/homepage')
   }
 });
 

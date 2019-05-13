@@ -134,7 +134,7 @@ module.exports = {
                 ]
             }).toArray();
            
-            if (book.length === 0) throw "No book with that keyword";
+          
             return book;
         
     },

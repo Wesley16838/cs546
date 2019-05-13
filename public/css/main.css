@@ -1,6 +1,6 @@
 /* Normalization */
 body {
-  background: #fefefe;
+
   font-family: Georgia, Cambria, "Times New Roman", Times, serif;
   font-size: 15pt;
   height: 100%;
@@ -22,7 +22,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #333;
+  color: rgb(0, 0, 0);
  
 }
 
@@ -157,7 +157,7 @@ nav .right ul li ul li a{
   transition: all .3s ease;
 }
 nav .right ul li ul li a:hover{
-  color:rgb(255, 136, 0);
+  color:rgb(223, 119, 0);
 }
 /*Loading effect*/
 #loading-wrapper {
@@ -357,20 +357,20 @@ text-align: center
 }
 
 #fp-nav ul li a span, .fp-slidesNav ul li a span{
-  background-color: #fefefe;
+  background-color: #fff;
 }
 
 .title{
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 6.5rem;
-  color: white;
+  color: #fff;
   line-height: 6rem;
 }
 
 .subtitle{
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 3rem;
-  color: white;
+  color: #fff;
   line-height: 6rem;
 }
 
@@ -553,6 +553,7 @@ form h1{
   width: 100vw;
   overflow: hidden;
   position: relative;
+  background-color: #000;
 }
 .topNav{
   z-index: 999;
@@ -720,12 +721,16 @@ form h1{
   padding:3em 0em;
   width:100vw;
 }
-
+.home{
+  background: #000;
+  position: relative;
+  
+}
 .slick-prev:before {
-  color: rgba(121, 121, 121, 0.8);
+  color: #767676
 }
 .slick-next:before {
-  color: rgba(121, 121, 121, 0.8);
+  color: #767676
 }
 
 .slide2{
@@ -751,7 +756,7 @@ form h1{
 }
 
 .text {
-  color: white;
+  color: #008951;
   font-size: 20px;
   position: absolute;
   bottom: 0%;
@@ -769,7 +774,7 @@ form h1{
 }
 
 .text p:nth-child(2){
-  color:rgb(136, 136, 136);
+  color:rgb(95, 95, 95);
   font-size:.8em;
 }
 
@@ -780,7 +785,7 @@ form h1{
 .has-search .form-control-feedback {
   right: initial;
   left: 0;
-  color: #ccc;
+  color: rgb(235, 235, 235);
 }
 
 .has-search .form-control {
@@ -941,7 +946,7 @@ article section{
   height: 120%;
   display: block;
   content: "";
-  background-color: #f3f3f3;
+  background-color: #fff;
   position: absolute;
   z-index: 0;
   right: 50px;
@@ -955,17 +960,17 @@ article section{
 
 .book-price{
   font-size: 1.5em;
-  color:rgb(27, 189, 140);
+  color:#008385;
   vertical-align: bottom;
 }
 
 .book-author{
   font-size: .7em;
-  color:rgb(150, 150, 150);
+  color:rgb(95, 95, 95);
 }
 
 #cart{
-  color:rgb(255, 136, 0);
+  color:#b55f00;
   position: absolute;
   bottom: 55%;
   left: 15px;
@@ -1179,7 +1184,7 @@ transition: .5s ease;
 .tab {
   float: left;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #ffffff;
   width: 30%;
   height: 100vh;
   position: fixed
@@ -1239,7 +1244,7 @@ transition: .5s ease;
 .search-header strong{
   font-size: 1.25em;
   font-weight: bold;
-  color: #3ea5a7;
+  color: #008385;
 }
 
 .book-wrap {
@@ -1296,7 +1301,7 @@ font-size: .85em;
   margin: 0 auto;
   height: 40px;
   border-radius: 20px;
-  background-color: #3ea5a7;
+  background-color: #008385;
   padding: 4px 1.125em;
   display: flex;
   align-items: center;
@@ -1321,7 +1326,7 @@ font-size: .85em;
 
 .book-desc p{
   font-size: 1em;
-  color:rgb(150, 150, 150);
+  color:#767676;
 }
 
 .right-book{
@@ -1353,7 +1358,7 @@ font-size: .85em;
 }
 
 .footer-heading{
-  color:#41aaff;
+  color:#ffffff;
  }
 
 .footer-heading span{

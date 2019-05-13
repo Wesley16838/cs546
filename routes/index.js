@@ -8,8 +8,7 @@ const constructorMethod = app => {
   app.use("/user", userRoutes);
   app.use("/book", bookRoutes);
   app.use("*", (req, res) => {
-    res.status(500).json();
-    return;
+    res.status(500).redirect('/homepage');
   });
 };
 

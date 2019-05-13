@@ -37,12 +37,13 @@ module.exports = {
             var updatedInfo = await userCollection.updateOne({ _id: userobj, "cart.id":bookobj }, updatedUser);
                        
             const user = userCollection.findOne({ _id: userobj });
-            if (updatedInfo.modifiedCount === 0) {
-              throw "could not update successfully";
-            }else{
-              console.log('Update item successfully');
-              return user;
-            }
+            return user;
+            // if (updatedInfo.modifiedCount === 0) {
+            //   throw "could not update successfully";
+            // }else{
+            //   console.log('Update item successfully');
+            //   return user;
+            // }
 
           }else{
             throw "It is not a valid id"
@@ -68,12 +69,13 @@ module.exports = {
        
 
         const user = userCollection.findOne({ _id: userid });
-        if (updatedInfo.modifiedCount === 0) {
-          throw "could not update successfully";
-        }else{
-          console.log('Add item successfully');
-          return user;
-        }
+        return user;
+        // if (updatedInfo.modifiedCount === 0) {
+        //   throw "could not update successfully";
+        // }else{
+        //   console.log('Add item successfully');
+        //   return user;
+        // }
       }
 
     },

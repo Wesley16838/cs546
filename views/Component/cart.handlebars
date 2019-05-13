@@ -3,10 +3,11 @@
     <nav style="background-color:#000; z-index: 9999">
             <div class="left">
                     <a href="../../homepage" ><img id="logo" src="../../public/assets/logo200.png" alt="Logo" ></a>
-                    <form action="/" method="POST">
+                    <form action="/book/search" method="GET">
                             <div class="form-group has-feedback has-search" style="margin-bottom:0px">
-                                    <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                    <input type="text" class="form-control" placeholder="Search">
+                                <label for="keyword" style="display:none;"></label>
+                                <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                              <span style="top: 0px;" class="glyphicon glyphicon-search form-control-feedback"></span>
                             </div>
                     </form>
             </div>
