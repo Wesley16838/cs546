@@ -261,14 +261,18 @@ function validateForm() {
 }
 
 function validateForm1() {
-  var x = document.forms["static-form1"]["name"].value;
-if ( x.length !=13 || x.length !=16 ) {
-    alert("Not a valid card number. Length must be 13 or 16");
+  var x = document.forms["static-form1"]["cardnumber"].value;
+  var y = document.forms["static-form1"]["name"].value;
+  console.log(x)
+  var str = x.replace(/\s/g, '');
+   console.log(str)
+    if ( str.length !=16 ) {
+    alert(str.length);
     return false;
   }
   var format_name = /[!@$%^&*()_+\=\[\]{};':"\\|.<>\/?]/;
   var format_num = /[\d]/;
-  if (format_name.test(x) || format_num.test(x)) {
+  if (format_name.test(y)) {
     alert("Don't contain special characters like !@$%^&*()_+\=\[\]{};':\"\\|.<>\/? or number in Name of Card");
     return false;
   }
