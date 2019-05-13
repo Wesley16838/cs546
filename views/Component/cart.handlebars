@@ -114,15 +114,14 @@
               
                 <button class="cart-btn" type="submit">Place your order</button>         
                      
-                {{!-- {{#if hasErrors}}
-                    <ul class="error-list">
-                        {{#each errors}}
-                        <li>
-                        {{this}}
+                {{#if hasErrors}}
+                   <ul class="error-list" style="padding-inline-start: 0px;">
+        
+                        <li style="list-style: none;">
+                        <p class="not-found">{{error}}</p>
                         </li>
-                        {{/each}}
                     </ul>
-                {{/if}} --}}
+                {{/if}}
             </form>
         </div>
 </div>

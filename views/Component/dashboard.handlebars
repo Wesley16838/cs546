@@ -2,10 +2,11 @@
 <nav style="background-color:#000; z-index: 9999">
         <div class="left">
                 <a href="../../homepage" ><img id="logo" src="../../public/assets/logo200.png" alt="Logo" ></a>
-                <form action="/" method="POST">
+               <form action="/book/search" method="GET">
                         <div class="form-group has-feedback has-search" style="margin-bottom:0px">
-                                <span class="glyphicon glyphicon-search form-control-feedback"></span>
-                                <input type="text" class="form-control" placeholder="Search">
+                                <label for="keyword" style="display:none;"></label>
+                                <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
+                              <span style="top: 0px;" class="glyphicon glyphicon-search form-control-feedback"></span>
                         </div>
                 </form>
         </div>
@@ -37,18 +38,54 @@
     </div>
     <div id="Account" class="tabcontent">
         <h1 style="font-weight:bold">Account Information</h1>
-     
+        <div class="profile">
+            <ul>
+                <li>First Name : {{firstName}}</li>
+                <li>Last Name : {{lastName}}</li>
+                <li>Phone Number : {{phonenumber}}</li>
+                <li>Email : {{email}}</li>
+                <li>
+                     <h1>Address</h1>
+                    <div class="addresses">
+                        {{#each addresses}}  
+                            <div class="user-address">
+                                    <p>{{address}}</p>
+                                    <p>{{city}}</p>
+                                    <p>{{state}}</p>
+                                    <p>{{zip}}</p>
+                                    <p>{{country}}</p>
+                            </div>  
+                        {{/each}}  
+                    </div>
+                   
+                </li>
+                <li>
+                    <h1>Payment Method</h1>
+                    <div class="addresses">
+                        {{#each payment}}  
+                            <div class="user-address">
+                                <p>Visa end in {{cardNumber}}</p>
+                                <p>Card User: {{username}}</p>
+                            </div>
+                        {{/each}}  
+                    </div>
+                    
+                </li>
+                
+            </ul>
+            
+        </div>
     </div>
     <div id="Address" class="tabcontent">
         <h1 style="font-weight:bold">Address</h1>
-            <form action="/user/update/address" class="server-form" method="post" id="static-form">
+            <form action="/user/update/address" class="server-form" method="post" id="static-form" onsubmit="return validateForm()">
                 <div class="form-group half-form">
                     <label for="address" style="font-weight: normal;">Address</label>
-                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{address}}">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" value="{{address}}" required>
                 </div>
                 <div class="form-group half-form">
                     <label for="city" style="font-weight: normal;">City</label>
-                    <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{city}}">
+                    <input type="text" class="form-control" id="city" name="city" placeholder="City" value="{{city}}" required>
                 </div>
                 <div class="form-group half-form">
                     <label for="state" style="font-weight: normal;">State</label>
@@ -109,7 +146,7 @@
                 </div>
                 <div class="form-group half-form">
                     <label for="zip" style="font-weight: normal;">Zip</label>
-                    <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip" value="{{zip}}">
+                    <input type="text" class="form-control" id="zip" name="zip" placeholder="Zip" value="{{zip}}" required>
                 </div>
                
                 <div class="form-group half-form">
@@ -136,19 +173,19 @@
 
     <div id="Payment" class="tabcontent">
         <h1 style="font-weight:bold">Payment method</h1>
-        <form action="/user/update/payment" class="server-form" method="post" id="static-form">
+        <form action="/user/update/payment" class="server-form" method="post" id="static-form1" onsubmit="return validateForm1()">
                 <div class="form-group half-form">
-                    <label for="cardnumber" style="font-weight: normal;">Card Number</label>
-                    <input type="text" class="form-control input-card" id="cardnumber" name="cardnumber" placeholder="4●●● ●●●● ●●●● ●●●●" value="{{cardnumber}}">
+                    <label for="cardnumber" style="font-weight: normal;">Card Number(Only allow Visa)</label>
+                    <input type="text" class="form-control input-card" id="cardnumber" name="cardnumber" placeholder="4●●● ●●●● ●●●● ●●●●" value="{{cardnumber}}" required>
                 </div>
                 <div class="form-group half-form">
                     <label for="name" style="font-weight: normal;">Name on Card</label>
-                    <input type="text" class="form-control" id="name" name="name" placeholder="Name on card" value="{{name}}">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name on card" value="{{name}}" required>
                 </div>
               
                 <div class="form-group half-form">
                     <label for="expiration" style="font-weight: normal;">Expiration date: </label>
-                    <input type="text" class="form-control input-date" id="expiration" name="expiration" placeholder="MM/YY" value="{{expiration}}">
+                    <input type="text" class="form-control input-date" id="expiration" name="expiration" placeholder="MM/YY" value="{{expiration}}" required>
                 </div>
                
               
@@ -170,7 +207,28 @@
 
     <div id="Order" class="tabcontent">
         <h1 style="font-weight:bold">Track your order</h1>
-     
+         {{#each order}}  
+                    <div class="user-order">
+                            <div class="order-items">
+                                 {{#each content}}  
+                                <div class="order-item">
+                                    <img src="{{id.bookImage}}"  alt="">
+                                    <h2>{{id.bookName}}</h2>
+                                  
+                        
+                                </div>
+                            {{/each}}  
+                            </div>
+                           
+                            <div class="order-info">
+                                <p>Address : <span>{{address}}</span></p>
+                                <p>Payment : <span>{{payment}}</span></p>
+                                <p>Date : <span>{{date}}</span></p>
+                            </div>
+                           
+                    </div>
+                           
+         {{/each}}  
     </div>
 </div>
    
@@ -190,6 +248,36 @@ var cleave1 = new Cleave('.input-date', {
     date: true,
     datePattern: ['m', 'y']
 });
+function validateForm() {
+  var x = document.forms["static-form"]["address"].value;
+  var y = document.forms["static-form"]["city"].value;
+  var z = document.forms["static-form"]["zip"].value;
+  var format_name = /[!@$%^&*()_+\=\[\]{};':"\\|.<>\/?]/;
+  
+  if (format_name.test(x) || format_name.test(y) || format_name.test(z)) {
+    alert("Don't contain special characters like !@$%^&*()_+\=\[\]{};':\"\\|.<>\/? in Card Number");
+    return false;
+  }
+}
+
+function validateForm1() {
+  var x = document.forms["static-form1"]["cardnumber"].value;
+  var y = document.forms["static-form1"]["name"].value;
+  console.log(x)
+  var str = x.replace(/\s/g, '');
+   console.log(str)
+    if ( str.length !=16 ) {
+    alert(str.length);
+    return false;
+  }
+  var format_name = /[!@$%^&*()_+\=\[\]{};':"\\|.<>\/?]/;
+  var format_num = /[\d]/;
+  if (format_name.test(y)) {
+    alert("Don't contain special characters like !@$%^&*()_+\=\[\]{};':\"\\|.<>\/? or number in Name of Card");
+    return false;
+  }
+}
+
     function delete_cookie() {
         document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         document.cookie = "userid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";

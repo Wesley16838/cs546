@@ -39,8 +39,8 @@ module.exports = {
             if(objId.isValid(uid)){
               var obj = new objId(uid)
               const orderCollection = await orders();
-              const order = await orderCollection.find({user:obj})
-              if (order.length === 0) throw "No order with that user id";
+              const order = await orderCollection.find({user:obj}).toArray()
+              
               return order;
             }else{
               throw "It is not a valid id"
@@ -50,8 +50,8 @@ module.exports = {
           }
         }else{
           const orderCollection = await users();
-          const order = await orderCollection.find({user:uid})
-          if (order.length === 0) throw "No order with that user id";
+          const order = await orderCollection.find({user:uid}).toArray()
+    
           return order;
         }
       },

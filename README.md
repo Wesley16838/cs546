@@ -31,11 +31,14 @@ npm start
 		* Add
 		* Remove
 		* Place Order
-	* Search and filter books
+	* Search books
+	* Dashboard features
+		* Show user information
+		* Create address
+		* Create payment
+		* Track Order
 	
 ## Extra Features
-* Show user information in profile page
-* Track order
 * Upload books
 
 
