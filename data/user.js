@@ -86,8 +86,7 @@ module.exports = {
            throw "Mail exists"
         }else{
  
-            // let hash = bcrypt.hashSync('myPassword', 10);
-            // console.log(hash)
+        
             var tmp = await bcrypt.hash(password, 10).then(function (data) {return data}).catch(e=> {throw e;});
             let newUser = {
                 firstName: firstName,
@@ -122,7 +121,7 @@ module.exports = {
         if (!zip|| typeof zip != 'string') throw "You must provide a string of email";
     
         if (!country|| typeof country != 'string') throw "You must provide a string of password";
-        console.log('test2')
+  
         if (!id) throw "You must provide an id to search for";
         if(id.constructor != objId){
           if(id.constructor == String){

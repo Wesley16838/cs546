@@ -119,7 +119,7 @@ module.exports = {
     },
     async getByKeyword(keyword) {/////Search box
         if (!keyword || typeof keyword != 'string') throw "You must provide a keyword";
-            console.log('keyword')
+     
             
            
             let key = new RegExp('.*' + keyword + '.*', 'i');
@@ -139,14 +139,15 @@ module.exports = {
         
     },
     async getAll() {
-        console.log('2')
+ 
           const bookCollection = await books();
-          console.log('3')
+   
           
           const book = await bookCollection.find().toArray();
 
-          console.log('4')
+        
           if (book.length === 0) throw "No book found";
+          
           return book;
       
   }

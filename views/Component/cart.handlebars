@@ -35,7 +35,7 @@
         <div class="cart-left">
             <div class="left-top">
                 <div class="left-side">
-                    <img id="logo" src="../../public/assets/logo_bk200@2x.png" alt="Logo" style="float: left;">
+                    <img id="logo2" src="../../public/assets/logo_bk200@2x.png" alt="Logo" style="float: left;">
                     <h1 class="cart-title">Your Shopping Cart</h1>
                 </div>
                 <div class="right-side">
@@ -47,7 +47,7 @@
                 <ul style="padding-left: 0em;margin-bottom: 0px;">
                     {{#if empty }}
                     
-                       <h2 style="color:rgb(214, 0, 0)">Your cart is empty</h2>
+                       <li style="color:rgb(214, 0, 0)">Your cart is empty</li>
                     
                     {{/if}}
                      {{#each books}}  
@@ -83,7 +83,8 @@
                     {{/each}}
                 </ul>
                
-                <h2 style="text-align: left:">Total: ${{bookTotal}}</h2>
+                <h2 style="text-align: left;">Total: ${{bookTotal}}</h2>
+                <button onclick="removeAll()">Remove All books</button>
             </div>
         </div>
         <div class="cart-right">
@@ -92,7 +93,7 @@
             <form class="cart-form" action="/user/add/order" method="POST">
                 <div class="form-group" style="margin-bottom: 0em;">
                      <label for="shippingaddress" style="font-weight: bold;">Shipping Address</label>
-                        <select class="form-control" name="shippingaddress">
+                        <select id="shippingaddress" class="form-control" name="shippingaddress">
                             <option value="">Select address...</option>
                             {{#each addresses}}  
                             <option value="{{address}}, {{city}} {{state}}, {{zip}} {{country}}">{{address}}</option>
@@ -103,8 +104,8 @@
                    
 
                 <div class="form-group" style="margin-bottom: 0em;">
-                     <label for="paymentmethod" style="font-weight: bold;">Payment Method</label>
-                        <select class="form-control" id="" name="paymentmethod">
+                     <label for="payment" style="font-weight: bold;">Payment Method</label>
+                        <select class="form-control" id="payment" name="paymentmethod">
                             <option value="">Select Payment method...</option>
                             {{#each payments}}  
                             <option value="{{cardnumber}}">Visa ending in {{number}}</option>
@@ -135,5 +136,15 @@
         window.location = "../../../";
         
     }
-  
+   function removeAll() {
+       $.ajax({
+            url: '../../user/cart/delete',
+            type: 'DELETE',
+            success: function(result) {
+                 location.reload();  
+            }
+        });
+       
+    }
+
 </script>
