@@ -79,7 +79,7 @@ module.exports = {
     
         if (!lastName|| typeof lastName != 'string') throw "You must provide a string of last name";
 
-        if (!validatePhone(phoneNumber) || !phoneNumber || typeof phoneNumber != 'string') throw "Please provide a proper 10 digit phone number";
+        if (!phoneNumber || typeof phoneNumber != 'string') throw "Please provide a proper 10 digit phone number";
 
         if (!email|| typeof email != 'string') throw "You must provide a string of email";
     

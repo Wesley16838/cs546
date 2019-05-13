@@ -2,6 +2,7 @@ const dbConnection = require("../mongoConnection");
 const data = require("../data/");
 const books = data.book;
 const users = data.user;
+const bookRequests=data.bookRequest;
 async function main() {
   const db = await dbConnection();
   await db.dropDatabase();
@@ -45,7 +46,8 @@ async function main() {
   const ice4 = await books.create("A Feast for Crows", "George R. R. Martin","Bantam Books","Few books have captivated the imagination and won the devotion and praise of readers and critics everywhere as has George R. R. Martin’s monumental epic cycle of high fantasy. Now, in A Feast for Crows, Martin delivers the long-awaited fourth book of his landmark series, as a kingdom torn asunder finds itself at last on the brink of peace . . . only to be launched on an even more terrifying course of destruction.",["Epic fantasy"],"8.79","0-441-00232-8","uploads/ice4.png","Used Book","English","2005-11-08","Song of Ice and Fire");
   const ice5 = await books.create("A Dance with Dragons", "George R. R. Martin","Bantam Books","In the aftermath of a colossal battle, the future of the Seven Kingdoms hangs in the balance once again--beset by newly emerging threats from every direction. In the east, Daenerys Targaryen, the last scion of House Targaryen, rules with her three dragons as queen of a city built on dust and death. But Daenerys has three times three thousand enemies, and many have set out to find her. Yet, as they gather, one young man embarks upon his own quest for the queen, with an entirely different goal in mind.",["Epic fantasy"],"8.79","0-441-00319-8","uploads/ice5.png","Used Book","English","2011-07-12","Song of Ice and Fire");
   
-
+  // creating 1 book request
+  const br1= await bookRequests.create("Gardens of the Moon", "978-0765322883","The Malazan Empire simmers with discontent, bled dry by interminable warfare, bitter infighting and bloody confrontations with ancient and implacable sorcerers. Even the imperial legions, long inured to the bloodshed, yearn for some respite. Yet Empress Laseen's rule remains absolute, enforced by her dread Claw assassins.");
 
   console.log("Done seeding database");
   await db.close();

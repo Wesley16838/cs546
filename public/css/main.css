@@ -474,6 +474,17 @@ nav .right ul li ul li a:hover {
     justify-content: center;
 }
 
+.bookRequest-full{
+    background-image: url('../assets/bookRequest.jpg');
+    background-position: bottom;
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .half {
     width: 50%;
     float: left;
