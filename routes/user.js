@@ -5,10 +5,13 @@ const userData = data.user;
 const cartData = data.cart
 const bookData = data.book;
 const orderData = data.order;
+const bookRequestData=data.bookRequest;
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const checkAuth = require('../middleware/check_auth')
 const checkCookie = require('../middleware/check_cookie')
+const mongoCollections = require("../mongoCollections");
+const books = mongoCollections.books;
 
 router.get("/signup", checkCookie, async (req, res) => {
   console.log("sign up")
@@ -276,6 +279,41 @@ router.post("/cart/update/:bookId", async (req, res) => {
     res.status(400).json({
       error:e
     })
+  }
+});
+
+router.post("/brequest", async (req, res) => {
+  try{
+ console.log(req.body)
+        if(req.body.bookname ==  '' || req.body.isbn == '' || req.body.description == '') throw 'Please fill all fields'
+
+        const bookCollection = await books();
+       
+        var checkExist = await bookCollection.find({bookISBN: req.body.isbn}).toArray();
+    
+        if(checkExist.length>=1)
+          throw('Book already exists in our catalogue, please check it out.')
+
+        // else{
+        //     res.status(200).render("Component/bookRequest",{
+        //     done: true
+        // })
+        // }
+          // alert('Thank you for submitting a request! We will notify you through e-mail regarding this book request')
+
+
+        const user = await bookRequestData.create(req.body.bookname, req.body.isbn, req.body.description)
+     
+        res.status(200).redirect("/homepage")
+      
+  }catch(e){
+      res.status(400).render("Component/bookRequest",{
+          hasErrors: true,
+          error : e,
+      })
+      // res.status(400).json({
+      //   error:e
+      // })
   }
 });
 

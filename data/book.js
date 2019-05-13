@@ -93,7 +93,6 @@ module.exports = {
 
                 const newId = insertInfo.insertedId;
                 const book = await this.get(newId);
-              
 
                 return book
            
