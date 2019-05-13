@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -19,113 +19,122 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="../../public/css/fullpage.css">
-   
+
     <link rel="stylesheet" href="../../public/css/animate.css">
-    
+
     {{!-- favicon --}}
-    <link rel="shortcut icon" type="image/png" href="../../public/assets/favicon.png"/>
+    <link rel="shortcut icon" type="image/png" href="../../public/assets/favicon.png" />
 
     {{!-- font-awesome  --}}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="../../public/css/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="../../public/css/slick.css" />
     <!-- Add the slick-theme.css if you want default styling -->
-    <link rel="stylesheet" type="text/css" href="../../public/css/slick-theme.css"/>
+    <link rel="stylesheet" type="text/css" href="../../public/css/slick-theme.css" />
 
     {{!-- cleave  --}}
     <script src="../../public/js/cleave.min.js"></script>
-   
+
     <script type="text/javascript" src="../../public/js/slick.min.js"></script>
 
     <link rel="stylesheet" href="../../public/css/main.css">
 
     <script type="text/javascript">
-            if(document.title == 'Cart'){
-                  $(document).ready(function(){
-                    $(window).scroll(function(){
-                        var scroll = $(window).scrollTop();
-                        if (scroll > 80) {
-                        
-                      
-                          
-                        }else{
-                      
-                            
-                        }
-                    })
+        if (document.title == 'Cart') {
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                    if (scroll > 80) {
+
+
+
+                    } else {
+
+
+                    }
                 })
-            }else if(document.title == 'Landing Page'){
-                $(document).ready(function(){
-                    $(window).scroll(function(){
-                        var scroll = $(window).scrollTop();
-                        if (scroll > 80) {
-                        
-                            $("nav .left").css("line-height","80px");
-                            $("nav .right ul li a").css("line-height","80px");
-                            $("nav .right ul li ul li a").css("line-height","60px");
-                        
-                          
-                        }else{
-                        
-                            $("nav .left").css("line-height","110px");
-                            $("nav .right ul li a").css("line-height","110px");
-                            $("nav .right ul li ul li a").css("line-height","60px");
-                           
-                            
-                        }
-                    })
+            })
+        } else if (document.title == 'Landing Page') {
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                    if (scroll > 80) {
+
+                        $("nav .left").css("line-height", "80px");
+                        $("nav .right ul li a").css("line-height", "80px");
+                        $("nav .right ul li ul li a").css("line-height", "60px");
+
+
+                    } else {
+
+                        $("nav .left").css("line-height", "110px");
+                        $("nav .right ul li a").css("line-height", "110px");
+                        $("nav .right ul li ul li a").css("line-height", "60px");
+
+
+                    }
                 })
-            }else if(document.title == 'Dashboard Page'  || document.title == 'Search Page' ||  document.title == 'Detail Page'){
-                $(document).ready(function(){
-                    $(window).scroll(function(){
-                        var scroll = $(window).scrollTop();
-                        if (scroll > 80) {
-                        
-                          
-                          
-                        }else{
-                        
-                         
-                            
-                        }
-                    })
+            })
+        } else if (document.title == 'Dashboard Page' || document.title == 'Search Page' || document.title == 'Detail Page') {
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                    if (scroll > 80) {
+
+
+
+                    } else {
+
+
+
+                    }
                 })
-            }else{
-                $(document).ready(function(){
-                    $(window).scroll(function(){
-                        var scroll = $(window).scrollTop();
-                        if (scroll > 80) {
-                        
-                            $("nav .left").css("line-height","80px");
-                            $("nav .right ul li a").css("line-height","80px");
-                            $("nav .right ul li ul li a").css("line-height","60px");
-                            $("nav").css("background-color" , "rgba(0,0,0,0.9)");
-                        
-                        }else{
-                        
-                            $("nav .left").css("line-height","110px");
-                            $("nav .right ul li a").css("line-height","110px");
-                            $("nav .right ul li ul li a").css("line-height","60px");
-                            $("nav").css("background-color" , "transparent");
-                        
-                        }
-                    })
+            })
+        } else {
+            $(document).ready(function() {
+                $(window).scroll(function() {
+                    var scroll = $(window).scrollTop();
+                    if (scroll > 80) {
+
+                        $("nav .left").css("line-height", "80px");
+                        $("nav .right ul li a").css("line-height", "80px");
+                        $("nav .right ul li ul li a").css("line-height", "60px");
+                        $("nav").css("background-color", "rgba(0,0,0,0.9)");
+
+                    } else {
+
+                        $("nav .left").css("line-height", "110px");
+                        $("nav .right ul li a").css("line-height", "110px");
+                        $("nav .right ul li ul li a").css("line-height", "60px");
+                        $("nav").css("background-color", "transparent");
+
+                    }
                 })
-            }
-           
-            if(document.title == 'Home Page'){
-                $(document).ready(function(){
-                     $('.center').slick({
-                        centerMode: true,
-                        useCSS: false,
-                        centerPadding: '60px',
-                        slidesToShow: 5,
-                        slidesToScroll: 3,
-                        responsive: [
-                            {
+            })
+        }
+        if (document.title == 'About Page') {
+            $(document).ready(function() {
+                $('.about').slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 500,
+                    fade: true,
+                    cssEase: 'linear'
+                });
+            })
+        }
+        if (document.title == 'Home Page') {
+            $(document).ready(function() {
+                $('.center').slick({
+                    centerMode: true,
+                    useCSS: false,
+                    centerPadding: '60px',
+                    slidesToShow: 5,
+                    slidesToScroll: 3,
+                    responsive: [{
                             breakpoint: 768,
                             settings: {
                                 arrows: false,
@@ -133,8 +142,8 @@
                                 centerPadding: '40px',
                                 slidesToShow: 3
                             }
-                            },
-                            {
+                        },
+                        {
                             breakpoint: 480,
                             settings: {
                                 arrows: false,
@@ -142,54 +151,55 @@
                                 centerPadding: '40px',
                                 slidesToShow: 1
                             }
-                            }
-                        ]
-                           
-                    });
-                    $('.center').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-                        $('.slick-active.slick-center').removeClass('bigger')
-                        console.log('beforeChange', currentSlide, nextSlide);
-                    });
-                    $('.center').on('afterChange', function(event, slick, currentSlide){
-                        $('.slick-active.slick-center').addClass('bigger')
-                        console.log('afterChange', currentSlide);
-                    });
-                    $('.home-main').slick({
-                        slidesToShow: 1,
-                        slidesToScroll: 1,
-                        speed: 2000,
-                        autoplay: true,
-                        fade: true,
-                        autoplaySpeed: 5000,
-                        pauseOnHover:false,
-                        pauseOnFocus:false
-                    });
-                    
+                        }
+                    ]
+
                 });
-                
-            }
+                $('.center').on('beforeChange', function(event, slick, currentSlide, nextSlide) {
+                    $('.slick-active.slick-center').removeClass('bigger')
+                    console.log('beforeChange', currentSlide, nextSlide);
+                });
+                $('.center').on('afterChange', function(event, slick, currentSlide) {
+                    $('.slick-active.slick-center').addClass('bigger')
+                    console.log('afterChange', currentSlide);
+                });
+                $('.home-main').slick({
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    speed: 2000,
+                    autoplay: true,
+                    fade: true,
+                    autoplaySpeed: 5000,
+                    pauseOnHover: false,
+                    pauseOnFocus: false
+                });
+
+            });
+
+        }
+
     </script>
 </head>
 
-<body> 
-      {{{body}}}
+<body>
+    {{{body}}}
 
 
 
-<div class="load">
-    <div id="loading-wrapper">
-        <div id="loading-text">Loading</div>
-        <div id="loading-content"></div>
+    <div class="load">
+        <div id="loading-wrapper">
+            <div id="loading-text">Loading</div>
+            <div id="loading-content"></div>
+        </div>
     </div>
-</div>
 
-    
-    
+
+
     <script src="../../public/js/wow.js"></script>
     <script src="../../public/js/main.js"></script>
-     
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/tota11y/0.1.6/tota11y.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tota11y/0.1.6/tota11y.js"></script>
 </body>
 
 </html>
