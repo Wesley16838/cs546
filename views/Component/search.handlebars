@@ -4,6 +4,7 @@
                 <form action="/book/search" method="GET">
                         <div class="form-group has-feedback has-search" style="margin-bottom:0px">
                                 <span class="glyphicon glyphicon-search form-control-feedback"></span>
+                                <label for="keyword" style="display:none;"></label>
                                  <input type="search" id="keyword" name="keyword" class="form-control" placeholder="Search">
                         </div>
                 </form>
@@ -37,19 +38,17 @@
         <div class="book-wrap">
             {{#each books}}  
                 <div class="book">
-                    <a href="/book/{{_id}}"><img src="{{bookImage}}" alt=""></a>
+                    <a href="/book/{{_id}}"><img src="{{bookImage}}" alt="searchimage"></a>
                     <ul>
                         <li class="search-book-title">{{bookName}}</li>
-                        <li class="search-book-author">{{bookAuthor}}</li>
-                        <li class="search-book-price">{{bookPrice}}</li>
+                        <li style="color:#767676" class="search-book-author">{{bookAuthor}}</li>
+                        <li class="search-book-price">$ {{bookPrice}}</li>
                         <li class="search-book-button">
                             <a class="readmore" href="/book/{{_id}}">
-                                {{!-- <span>
-                                    {{bookPrice}}
-                                </span> --}}
-                                <span>
+                              
+                                
                                     <p style="color:#fff; margin: 0; font-size:.8em;">Read More</p>      
-                                </span>
+                            
                             </a>
                         </li>
                     </ul>

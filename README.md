@@ -14,7 +14,7 @@ npm i
 ```
 Set up data 
 ```sh
-node tasks/seed.js
+node tasks/seed.js or npm run seed
 ```
 Turn on the local server and running on http://localhost:3001
 ```sh

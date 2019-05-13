@@ -56,41 +56,57 @@
 
                     }
                 })
-            })
-        } else if (document.title == 'Landing Page') {
-            $(document).ready(function() {
-                $(window).scroll(function() {
-                    var scroll = $(window).scrollTop();
-                    if (scroll > 80) {
 
-                        $("nav .left").css("line-height", "80px");
-                        $("nav .right ul li a").css("line-height", "80px");
-                        $("nav .right ul li ul li a").css("line-height", "60px");
-
-
-                    } else {
-
-                        $("nav .left").css("line-height", "110px");
-                        $("nav .right ul li a").css("line-height", "110px");
-                        $("nav .right ul li ul li a").css("line-height", "60px");
-
-
-                    }
+            }else if(document.title == 'Landing Page'){
+                $(document).ready(function(){
+                      $("body").css("background-color","#000");
+                    $(window).scroll(function(){
+                        var scroll = $(window).scrollTop();
+                        if (scroll > 80) {
+                        
+                            $("nav .left").css("line-height","80px");
+                            $("nav .right ul li a").css("line-height","80px");
+                            $("nav .right ul li ul li a").css("line-height","60px");
+                          
+                          
+                        }else{
+                        
+                            $("nav .left").css("line-height","110px");
+                            $("nav .right ul li a").css("line-height","110px");
+                            $("nav .right ul li ul li a").css("line-height","60px");
+                         
+                            
+                        }
+                    })
                 })
-            })
-        } else if (document.title == 'Dashboard Page' || document.title == 'Search Page' || document.title == 'Detail Page') {
-            $(document).ready(function() {
-                $(window).scroll(function() {
-                    var scroll = $(window).scrollTop();
-                    if (scroll > 80) {
+            }else if(document.title == 'Signup Page'){
+                $(document).ready(function(){
+                 
+                 
+                       
+                        
+                   
+                         
+                          
+                          
+                     
+              
+                })
+            }else if(document.title == 'Dashboard Page'  || document.title == 'Search Page' ||  document.title == 'Detail Page'){
+                $(document).ready(function(){
+                    $(window).scroll(function(){
+                        var scroll = $(window).scrollTop();
+                        if (scroll > 80) {
+                        
+                          
+                          
+                        }else{
+                        
+                         
+                            
+                        }
+                    })
 
-
-
-                    } else {
-
-
-
-                    }
                 })
             })
         } else {
@@ -113,28 +129,25 @@
 
                     }
                 })
-            })
-        }
-        if (document.title == 'About Page') {
-            $(document).ready(function() {
-                $('.about').slick({
-                    dots: true,
-                    infinite: true,
-                    speed: 500,
-                    fade: true,
-                    cssEase: 'linear'
-                });
-            })
-        }
-        if (document.title == 'Home Page') {
-            $(document).ready(function() {
-                $('.center').slick({
-                    centerMode: true,
-                    useCSS: false,
-                    centerPadding: '60px',
-                    slidesToShow: 5,
-                    slidesToScroll: 3,
-                    responsive: [{
+
+            }
+           
+            if(document.title == 'Home Page'){
+                $(document).ready(function(){
+                   
+                     $('.center').slick({
+                        arrows: false,
+                        speed: 1000,
+                        autoplaySpeed: 3000,
+                        autoplay: true,
+                        centerMode: true,
+                        useCSS: false,
+                        centerPadding: '60px',
+                        slidesToShow: 5,
+                        slidesToScroll: 3,
+                        responsive: [
+                            {
+
                             breakpoint: 768,
                             settings: {
                                 arrows: false,
@@ -151,8 +164,31 @@
                                 centerPadding: '40px',
                                 slidesToShow: 1
                             }
-                        }
-                    ]
+
+                            }
+                        ]
+                           
+                    });
+                    $('.center').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+                        $('.slick-active.slick-center').removeClass('bigger')
+                        console.log('beforeChange', currentSlide, nextSlide);
+                    });
+                    $('.center').on('afterChange', function(event, slick, currentSlide){
+                        $('.slick-active.slick-center').addClass('bigger')
+                        console.log('afterChange', currentSlide);
+                    });
+                    $('.home-main').slick({
+                        arrows: false,
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        speed: 2000,
+                        autoplay: true,
+                        fade: true,
+                        autoplaySpeed: 5000,
+                        pauseOnHover:false,
+                        pauseOnFocus:false
+                    });
+                    
 
                 });
                 $('.center').on('beforeChange', function(event, slick, currentSlide, nextSlide) {

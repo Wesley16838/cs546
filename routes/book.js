@@ -60,16 +60,16 @@ try{
 //get book by keywork from search box
 router.get("/search", checkAuth, async (req, res) => { //check_Auth
     try{
-        console.log('1')
+   
         var total = 0;
         const id = req.cookies.userid;
-        console.log('2')
+   
         const userInfo = await userData.get(id);
         for(var i = 0; i < userInfo.cart.length; i++){
           total = total + userInfo.cart[i].qty
         }
         var keyword = req.query.keyword;
-        console.log(keyword)
+      
         const book = await bookData.getByKeyword(keyword);//unify to convert to upper or lower
         res.status(200).render('Component/search',{
           title:"Search Page",
@@ -98,7 +98,7 @@ router.get("/:id", checkAuth, async (req, res) => { //check_Auth
     try{
         var total = 0;
         const userid = req.cookies.userid;
-        console.log(userid)
+      
         const userInfo = await userData.get(userid);
         for(var i = 0; i < userInfo.cart.length; i++){
           total = total + userInfo.cart[i].qty
@@ -110,7 +110,7 @@ router.get("/:id", checkAuth, async (req, res) => { //check_Auth
         var year = book.bookPublishTime.getUTCFullYear();
 
         var newdate = year + "/" + month + "/" + day;
-        console.log(newdate)
+      
         // res.status(200).json({
         //     message:"Search all book successfully",
         //     book: book

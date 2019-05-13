@@ -149,6 +149,8 @@ router.get("/cart/:userid", async (req, res) => {
     var bookTotal=0;
     var eachtotal;
     const id = req.params.userid;
+    const userid = req.cookies.userid;
+    if(userid != id) throw "Error id"
     console.log("inCart");
     var total = 0;
     console.log(id)
@@ -190,9 +192,7 @@ router.get("/cart/:userid", async (req, res) => {
       empty: empty
     })
   }catch(e){
-    res.status(400).json({
-      error:e
-    })
+    res.status(400).redirect('/homepage')
   }
 });
 
@@ -448,6 +448,45 @@ router.post("/update/payment/", async (req, res) => {
     // res.status(200).json({
     //   user:userInfo
     // })
+  }catch(e){
+    res.status(400).json({
+      error:e
+    })
+  }
+});
+
+///Update quantity
+router.delete("/cart/delete", async (req, res) => {
+  console.log("Deletecart");
+  try{
+    var arr = [];
+ 
+    var total = 0;
+    var bookTotal;
+    console.log("inCart");
+  
+    const userId = req.cookies.userid;
+    console.log(userId)
+
+    const bookInfo = await cartData.deleteAll(userId)
+    const userInfo = await userData.get(userId)
+    console.log('test')
+    for(var i = 0; i < userInfo.cart.length; i++){
+      bookTotal = 0;
+      total = total + userInfo.cart[i].qty
+      bookInfo = await bookData.get(userInfo.cart[i].id);
+      bookTotal = bookTotal + bookInfo.bookPrice
+      bookInfo['bookQuantity'] = userInfo.cart[i].qty
+      bookInfo['bookTotal'] = bookTotal;
+      arr.push(bookInfo)
+    }
+
+    console.log(arr)
+    console.log('test1')
+ 
+
+    res.sendStatus(200)
+    
   }catch(e){
     res.status(400).json({
       error:e

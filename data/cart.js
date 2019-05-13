@@ -37,12 +37,13 @@ module.exports = {
             var updatedInfo = await userCollection.updateOne({ _id: userobj, "cart.id":bookobj }, updatedUser);
                        
             const user = userCollection.findOne({ _id: userobj });
-            if (updatedInfo.modifiedCount === 0) {
-              throw "could not update successfully";
-            }else{
-              console.log('Update item successfully');
-              return user;
-            }
+            return user;
+            // if (updatedInfo.modifiedCount === 0) {
+            //   throw "could not update successfully";
+            // }else{
+            //   console.log('Update item successfully');
+            //   return user;
+            // }
 
           }else{
             throw "It is not a valid id"
@@ -68,12 +69,13 @@ module.exports = {
        
 
         const user = userCollection.findOne({ _id: userid });
-        if (updatedInfo.modifiedCount === 0) {
-          throw "could not update successfully";
-        }else{
-          console.log('Add item successfully');
-          return user;
-        }
+        return user;
+        // if (updatedInfo.modifiedCount === 0) {
+        //   throw "could not update successfully";
+        // }else{
+        //   console.log('Add item successfully');
+        //   return user;
+        // }
       }
 
     },
@@ -193,7 +195,7 @@ module.exports = {
       console.log('inDelete')
       if(await userData.get(userid) == 0){ throw "No this user" }/////////
    
-      if(await bookData.get(bookid) == null){ throw "No this post" }
+      if(await bookData.get(bookid) == null){ throw "No this books" }
       console.log('inDelete')
       if(userid.constructor != objId || bookid.constructor != objId){
         if(userid.constructor == String || bookid.constructor == String){
@@ -235,6 +237,60 @@ module.exports = {
             console.log('Delete item successfully');
         };
       }
-    }
+    },
   
+    async deleteAll(userid) {
+      console.log('inDelete')
+      if (!userid) throw "You must provide an id to search for user";
+      console.log('inDelete')
+      if(await userData.get(userid) == 0){ throw "No this user" }/////////
+   
+      
+      
+      if(userid.constructor != objId ){
+        if(userid.constructor == String ){
+          if(objId.isValid(userid)){
+            var userobj = new objId(userid)
+           
+            const userCollection = await users();
+          
+            var updatedUser = {
+              $set:{
+                  "cart":[]
+              }
+            }
+        
+            var updatedInfo = await userCollection.updateOne({ _id: userobj}, updatedUser);
+            //get user after update 
+            const user = userCollection.findOne({ _id: userobj});
+
+            
+                console.log('Delete item successfully');
+                return user;///////////
+          
+          
+          }else{
+            throw "It is not a valid id"
+          }
+        }else{
+          throw "Please input Id as object Id or string"
+        }
+      }else{
+        const userCollection = await users();
+        
+
+        var updatedUser = {
+          $set:{
+              "cart":[]
+          }
+        }
+    
+        var updatedInfo = await userCollection.updateOne({ _id: userobj}, updatedUser);
+        //get user after update 
+        const user = userCollection.findOne({ _id: userid});
+        console.log('Delete item successfully');
+        return user;///////////
+      }
+    }
+
   };
