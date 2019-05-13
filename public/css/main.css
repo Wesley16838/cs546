@@ -1529,8 +1529,7 @@ article section {
 }
 
 .bottom {
-    align-content: center;
-    background-color: black;
+    text-align: center;
 }
 
 .slide11 {
@@ -1567,10 +1566,12 @@ article section {
     font-family: 'Vollkorn';
     font-size: 10rem;
     line-height: 120px;
+    /*
     margin: 0 0 72px -10px;
     position: relative;
     left: 20%;
     top: 10%;
+*/
 }
 
 .about_p {
@@ -1578,11 +1579,11 @@ article section {
     font-family: 'Roboto';
     font-size: 28px;
     line-height: 48px;
-    margin-bottom: 48px;
+    margin-bottom: 15px;
     width: 500px;
     position: relative;
-    left: 35%;
-    top: 10%;
+    /*    left: 35%;*/
+    /*    top: 10%;*/
     text-align: center;
 }
 
@@ -1602,10 +1603,9 @@ article section {
     font-family: 'Roboto';
     font-size: 28px;
     line-height: 48px;
-    margin-bottom: 48px;
     width: 500px;
     position: relative;
-    left: 35%;
+    left: 5%;
     top: 7%;
     text-align: center;
 }
@@ -1628,11 +1628,13 @@ article section {
 .books {
     opacity: .7;
     border-radius: 6px;
-    height: 13em;
+    /*    height: 13em;*/
     width: 20em;
     position: absolute;
+    /*
     bottom: 8%;
     left: 5%;
+*/
 }
 
 .slick-next:before {
@@ -1659,9 +1661,9 @@ article section {
 }
 
 .books3 {
-    opacity: .7;
+    opacity: .9;
     border-radius: 6px;
-    height: 10em;
+    height: 15em;
     width: 10em;
     position: absolute;
     left: 10vw;
@@ -1673,7 +1675,7 @@ article section {
     font-family: 'Vollkorn';
     font-size: 60px;
     line-height: 120px;
-    margin: 0 0 72px -10px;
+    margin: 0 0 20px -10px;
     position: relative;
     left: 15%;
     top: 4%;
@@ -1741,4 +1743,67 @@ article section {
 .btn_about:visited {
     color: #fff;
     text-decoration: none;
+}
+
+.btn_home {
+    background-color: rgb(0, 0, 212);
+    text-decoration: none;
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: .25s ease;
+    opacity: 1;
+    text-transform: uppercase;
+    width: 200px;
+    display: inline-block;
+    position: relative;
+    /*    left: 41%;*/
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.btn_home::after {
+    content: "";
+    background-image: url(../assets/arrow_white.svg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 15px;
+    height: 25px;
+    position: absolute;
+    top: 11px;
+    left: 175px;
+    opacity: 1;
+    transition: .25s ease;
+}
+
+.btn_home:hover {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(49, 49, 218);
+}
+
+.btn_home:hover::after {
+    opacity: 0;
+    left: 185px;
+}
+
+.btn_home:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+.btn_home:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+.about .slick-prev {
+    left: 20px;
+}
+
+.about .slick-next {
+    right: 32px;
 }
